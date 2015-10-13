@@ -1,9 +1,10 @@
 /// <reference path="../typings/tsd" />
 
 //------- imports for export of modules main file
-import {register, inject} from "./di"
+import {register, inject, get} from "./di"
 
 export {
 	register,
-	inject
+	inject,
+	get
 }

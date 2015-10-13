@@ -1,5 +1,9 @@
 declare module "horcrux-di" {
-export {	register,	inject}
+export {	register,	inject,	get}
+ function get(className: string): any;
+ function get<T>(clazz: {
+    new (): T;
+}): T;
 /**
  * Creates an instance of this class via new() and registeres this instance for dependency injection.
  */

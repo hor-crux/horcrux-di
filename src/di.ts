@@ -1,12 +1,19 @@
 let map: {[className:string]:any} = {};
-
-function get<T>(clazz:{new():T}): T {
-	register(clazz);
+function get(className:string): any
+function get<T>(clazz:{new():T}): T
+function get(clazz:any): any {
+	let instance: any;
 	
-	let clazzName = (<any>clazz).name;
-	let instance = map[clazzName];
-	
-	return <T>instance;
+	if(typeof clazz === "string") {
+		instance = map[clazz];
+	}
+	else {
+		register(clazz);
+		
+		let clazzName = (<any>clazz).name;
+		instance = map[clazzName];
+	}
+		return instance;
 }
 
 /**
@@ -26,4 +33,5 @@ function inject(clazz:any): PropertyDecorator {
 	}
 }
 
-export {register, inject}
+
+export {register, inject, get}
